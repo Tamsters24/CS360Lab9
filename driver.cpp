@@ -59,7 +59,8 @@ int main() {
     cout << "The element (2, 1) of array \"a\" is: ";
     cout << a.operator()(2,1) << endl;
 
-    /* CS360: Write code that accesses and prints element 2,1 of array b */
+    /* CS360: Write code that accesses and prints
+     * element 2,1 of array b */
     cout << "The element (2, 1) of array \"b\" is: ";
     cout << b.operator()(2,1) << endl;
 
@@ -69,19 +70,16 @@ int main() {
     a.print();
 
     /* code to test operator== */
-    Table<int> c(0,0);
+    Table<int> c (0,0);
     c = a;
     c(3,1) = 4;//CS360: to test operator==, comment out this line and the arrays should be equal
     cout << "array c: " << endl;
     c.print();
 
-    cout << "Before condition\n";
-
     if(a == c)
         cout << "arrays a and c were equal" << endl;
     else
         cout << "arrays a and c were not equal" << endl;
-
 
     /*CS360 Challenge: Note that this part of the lab is not required.
         Do this last and only if you get everything else working.
@@ -89,9 +87,17 @@ int main() {
         Then fill the array with random numbers.
         Then print the array.
         Then free the memory when done.*/
+    Table<int> copy (a);
+    cout << "\n\"copy\" array of \"a\" is:\n";
+    copy.print();
 
+    for (int row = 0; row < 4; row++)
+        for (int col = 0; col < 7; col++)
+            copy(row, col) = rand() % 101;
+    cout << "\n\"copy\" array of with random integers is:\n";
+    copy.print();
 
-   return 0;
+    return 0;
 
 } // end main
 

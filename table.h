@@ -15,14 +15,14 @@ public:
     Table(const Table<Lab9> &init);
     ~Table();
 
-    Lab9 &operator()(int, int);
-    const Lab9 &operator()(int, int) const;
+    void inputValues();
+    void print() const;
+
+    const Lab9 &operator()(int, int) const; // overloaded operator for const tables
+    Lab9 &operator()(int, int); // overloaded operator for non-const tables
     const Table<Lab9> &operator=(const Table<Lab9> &);
     bool operator==(const Table<Lab9> &) const;
     bool operator!=(const Table<Lab9> &) const;
-
-    void inputValues();
-    void print() const;
 
 private:
     int rows;             // number of rows in array
@@ -63,6 +63,16 @@ Table<Lab9>::~Table() {
     delete [] ptr;
 } // end class Table destructor
 
+// template function for subscript operator() definition
+template <class Lab9>
+const Lab9 &Table<Lab9>::operator()(int s1, int s2) const {
+    if (!(0 <= s1 && s1 < rows))
+        s1 = 0;
+    if (!(0 <= s2 && s2 < columns))
+        s2 = 0;
+    return ptr[columns * s1 + s2]; // rvalue
+}
+
 /* CS360: Write definition for overloaded subscript operator() for
  * non-const Tables. Hint see declaration in class above */
 template <class Lab9>
@@ -73,16 +83,6 @@ Lab9 &Table<Lab9>::operator()(int s1, int s2) {
         s2 = 0;
     return ptr[columns * s1 + s2]; // rvalue
 } // end function operator()
-
-// template function for subscript operator() definition
-template <class Lab9>
-const Lab9 &Table<Lab9>::operator()(int s1, int s2) const {
-    if (!(0 <= s1 && s1 < rows))
-        s1 = 0;
-    if (!(0 <= s2 && s2 < columns))
-        s2 = 0;
-    return ptr[columns * s1 + s2]; // rvalue
-}
 
 // template function operator= definition
 template <class Lab9>
