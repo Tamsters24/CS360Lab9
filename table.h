@@ -20,6 +20,7 @@ public:
     const Table<Lab9> &operator=(const Table<Lab9> &);
     bool operator==(const Table<Lab9> &) const;
     bool operator!=(const Table<Lab9> &) const;
+
     void inputValues();
     void print() const;
 
@@ -36,10 +37,12 @@ template <class Lab9>
 Table<Lab9>::Table(int r, int c) {
     rows = (r > 0 ? r : 10);
     columns = (c > 0 ? c : 10);
+
     /* CS360: Write code to allocate dynamically an array with rows *
        columns elements of type T */
     int rxc = rows * columns;
     ptr = new Lab9[rxc];
+
     for (int i = 0; i < rows * columns; i++)
         ptr[i] = 0; // initialize array
 } // end class Table constructor
@@ -71,6 +74,7 @@ Lab9 &Table<Lab9>::operator()(int s1, int s2) {
     return ptr[columns * s1 + s2]; // rvalue
 } // end function operator()
 
+// template function for subscript operator() definition
 template <class Lab9>
 const Lab9 &Table<Lab9>::operator()(int s1, int s2) const {
     if (!(0 <= s1 && s1 < rows))
@@ -80,6 +84,7 @@ const Lab9 &Table<Lab9>::operator()(int s1, int s2) const {
     return ptr[columns * s1 + s2]; // rvalue
 }
 
+// template function operator= definition
 template <class Lab9>
 const Table<Lab9> &Table<Lab9>::operator=(const Table<Lab9> &right) {
     if (&right != this) {
@@ -89,8 +94,8 @@ const Table<Lab9> &Table<Lab9>::operator=(const Table<Lab9> &right) {
             columns = right.columns;
             ptr = new Lab9[rows * columns];
         } // end if
-        for (int i = 0; i < rows * columns; i++)
-            ptr[i] = right.ptr[i];
+        for (int k = 0; k < rows * columns; k++)
+            ptr[k] = right.ptr[k];
     } // end if
     return *this;
 } // end function operator=
@@ -98,9 +103,19 @@ const Table<Lab9> &Table<Lab9>::operator=(const Table<Lab9> &right) {
 /* CS360: Write definition for overloaded operator== */
 template <class Lab9>
 bool Table<Lab9>::operator==(const Table<Lab9> &right) const {
-    return (*this == right);
+    bool coordinate = true;
+    for (int k = 0; k < rows * columns; k++) {
+        if (ptr[k] == right.ptr[k]) {
+            // do nothing
+        } else {
+            coordinate = false;
+        }
+    }
+    return coordinate;
 }
 
+// determine if two arrays are not equal and
+// return true, otherwise return false (uses operator==)
 template <class Lab9>
 bool Table<Lab9>::operator!=(const Table<Lab9> &right) const {
     return *this != right;
@@ -109,18 +124,16 @@ bool Table<Lab9>::operator!=(const Table<Lab9> &right) const {
 // template function inputValues definition
 template <class Lab9>
 void Table<Lab9>::inputValues() {
-    for (int i = 0; i < rows * columns; i++)
-        cin >> ptr[i];
+    for (int l = 0; l < rows * columns; l++)
+        cin >> ptr[l];
 } // end function inputValues
 
 // template function print definition
 template <class Lab9>
 void Table<Lab9>::print() const {
-    for (int i = 0; i < rows * columns; i++) {
-        cout << setw(6) << ptr[i];
-        if ((i + 1) % columns == 0)
-            cout << endl;
-        if (i % columns != 0)
+    for (int m = 0; m < rows * columns; m++) {
+        cout << setw(6) << ptr[m];
+        if ((m + 1) % columns == 0)
             cout << endl;
     } // end for
 } // end function print

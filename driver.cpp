@@ -16,7 +16,7 @@ using std::setw;
 #include "table.h"
 
 int main() {
-    srand(time(0)); // seed random function
+    srand(time(nullptr)); // seed random function
 
     /* CS360: Write code to create a Table of ints of size (4, 7);
      * name the Table "a" */
@@ -54,25 +54,28 @@ int main() {
     b.print();
     cout << endl;
 
-    // retrieve array element using overloaded operator() CS360: write code to access a(2,1);
+    /* retrieve array element using overloaded operator()
+     * CS360: write code to access a(2,1); */
     cout << "The element (2, 1) of array \"a\" is: ";
-
+    cout << a.operator()(2,1) << endl;
 
     /* CS360: Write code that accesses and prints element 2,1 of array b */
-
+    cout << "The element (2, 1) of array \"b\" is: ";
+    cout << b.operator()(2,1) << endl;
 
     // change element of array using overloaded operator()
-    a( 2, 1 ) = -1;
+    a(2, 1) = -1;
     cout << "Changed element (2, 1) to -1: \n";
     a.print();
 
-
-    /* code to test operator==*/
+    /* code to test operator== */
     Table<int> c(0,0);
     c = a;
     c(3,1) = 4;//CS360: to test operator==, comment out this line and the arrays should be equal
     cout << "array c: " << endl;
     c.print();
+
+    cout << "Before condition\n";
 
     if(a == c)
         cout << "arrays a and c were equal" << endl;
@@ -81,12 +84,11 @@ int main() {
 
 
     /*CS360 Challenge: Note that this part of the lab is not required.
-
-            Do this last and only if you get everything else working.  
-            Write code to dynamically allocate a Table of integers using a pointer.
-            Then fill the array with random numbers.
-            Then print the array.
-            Then free the memory when done.*/
+        Do this last and only if you get everything else working.
+        Write code to dynamically allocate a Table of integers using a pointer.
+        Then fill the array with random numbers.
+        Then print the array.
+        Then free the memory when done.*/
 
 
    return 0;
