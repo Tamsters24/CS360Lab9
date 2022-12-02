@@ -16,53 +16,55 @@ using std::setw;
 #include "table.h"
 
 int main() {
-   srand( time( 0 ) ); // seed random function
+    srand(time(0)); // seed random function
 
-   /* CS360:  Write code to create a Table of ints of size ( 4, 7 ); 
-      name the Table "a" */
+    /* CS360: Write code to create a Table of ints of size (4, 7);
+     * name the Table "a" */
+    Table<int> a (4, 7);
 
-   /* CS360:  Write code to create a Table of chars of size ( 5, 2 ); 
-      name the Table "b" */
+    /* CS360: Write code to create a Table of chars of size (5, 2);
+     * name the Table "b" */
+    Table<char> b (5, 2);
 
-   cout << "Uninitialized array \"a\" is: \n";
-   a.print(); 
-   
-   cout << "Uninitialized array \"b\" is: \n";
-   b.print(); // output null characters
+    cout << "Uninitialized array \"a\" is: \n";
+    a.print();
 
-   // initialize array "a" with random values (0-100)
-   for ( int i = 0; i < 4; i++ )
-      for ( int j = 0; j < 7; j++ )
-         a( i, j ) = rand() % 101;
-   
-   // initialize array "b" with 'g'
-   for ( i = 0; i < 5; i++ )
-      for ( int j = 0; j < 2; j++ )
-         b( i, j ) = 'g';
+    cout << "Uninitialized array \"b\" is: \n";
+    b.print(); // output null characters
 
-   cout << "\nInitialized array \"a\" is now:\n";
-   a.print();
-   
-   cout << "Initialized array \"b\" is now: \n"; 
-   b.print();
+    // initialize array "a" with random values (0-100)
+    for (int i = 0; i < 4; i++)
+        for (int j = 0; j < 7; j++)
+            a(i, j) = rand() % 101;
 
-   cout << "\nEnter values for b (10 of them): \n";
-   b.inputValues();
-   cout << endl;
-   b.print();
-   cout << endl;
+    // initialize array "b" with 'g'
+    for (int k = 0; k < 5; k++)
+        for (int l = 0; l < 2; l++)
+            b(k, l) = 'g';
 
-   // retrieve array element using overloaded operator() CS360: write code to access a(2,1);
-   cout << "The element (2, 1) of array \"a\" is: ";
+    cout << "\nInitialized array \"a\" is now:\n";
+    a.print();
 
+    cout << "Initialized array \"b\" is now: \n";
+    b.print();
 
-   /* CS360: Write code that accesses and prints element 2,1 of array b */
+    cout << "\nEnter values for b (10 of them): \n";
+    b.inputValues();
+    cout << endl;
+    b.print();
+    cout << endl;
+
+    // retrieve array element using overloaded operator() CS360: write code to access a(2,1);
+    cout << "The element (2, 1) of array \"a\" is: ";
 
 
-   // change element of array using overloaded operator()
-   a( 2, 1 ) = -1;
-   cout << "Changed element (2, 1) to -1: \n"; 
-   a.print();
+    /* CS360: Write code that accesses and prints element 2,1 of array b */
+
+
+    // change element of array using overloaded operator()
+    a( 2, 1 ) = -1;
+    cout << "Changed element (2, 1) to -1: \n";
+    a.print();
 
 
     /* code to test operator==*/
